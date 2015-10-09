@@ -3,7 +3,7 @@ from models import Musica, Gravacao, Comentario
 
 
 class MusicaAdmin(admin.ModelAdmin):
-    fields = ('titulo', 'album', 'descricao','audio', 'votacao', 'letra')
+    fields = ('titulo', 'artista','album', 'descricao','audio', 'votacao', 'letra')
 
 class GravacaoAdmin(admin.ModelAdmin):
     fields = ('descricao', 'audio', 'musica', 'usuario')

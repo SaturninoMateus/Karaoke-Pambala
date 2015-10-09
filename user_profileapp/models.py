@@ -1,6 +1,9 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
+from django.core.exceptions import ValidationError
+
+
 
 
 ########################################################################################################
@@ -38,6 +41,23 @@ class Usuario(AbstractBaseUser, models.Model):
     def __unicode__(self):
         #se vc estudou python então sabe o que isso faz
         return self.nome_usuario
+
+    def get_nome(self):
+        return 'Nome: %s' % (str(self.nome))
+
+    def get_nome_usuario(self):
+        return 'Nome de usuario: %s' % (str(self.nome_usuario))
+
+    def save(self, *args, **kwargs):
+        #check if the row with this hash already exists.
+        '''
+        for x in '0123456789':
+            if x in self.nome:
+                raise ValidationError('erro')'''
+        self.nome = str(self.nome)
+
+        super(Usuario, self).save(*args, **kwargs)
+
 ###############################################################################################
 class Artista(models.Model):
     '''Essa classe representa a entidade Artista'''
