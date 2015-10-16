@@ -7,4 +7,4 @@ class Index(View):
     def get(self, request):
         params = {}
         params['usuarios'] = Usuario.objects.all()
-        return render(request,'signup.html',params)
+        return render(request,'index.html',params)
