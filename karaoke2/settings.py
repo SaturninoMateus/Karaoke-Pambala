@@ -15,10 +15,12 @@ import os
 
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+'''
+Acho q isso so no django 1.7.x p baixo
 TEMPLATE_DIRS = [
     BASE_DIR + '/static/templates/',
-
-]
+]'''
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'karaoke2.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR + '/static/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

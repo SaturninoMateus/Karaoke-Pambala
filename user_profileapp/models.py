@@ -48,15 +48,15 @@ class Usuario(AbstractBaseUser, models.Model):
     def get_nome_usuario(self):
         return 'Nome de usuario: %s' % (str(self.nome_usuario))
 
-    def save(self, *args, **kwargs):
+    """def save(self, *args, **kwargs):
         #check if the row with this hash already exists.
         '''
         for x in '0123456789':
-            if x in self.nome:
+            if x in self.nome:git
                 raise ValidationError('erro')'''
         self.nome = str(self.nome)
 
-        super(Usuario, self).save(*args, **kwargs)
+        super(Usuario, self).save(*args, **kwargs)"""
 
 ###############################################################################################
 class Artista(models.Model):

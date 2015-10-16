@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% for usuario in usuarios %}
+        <br>{{ usuario }} | {{ usuario.nome }} {{ usuario.sobrenome }} | {{ usuario.pais }} | {{ usuario.cidade }}
+    {% endfor %}
+</body>
+</html>

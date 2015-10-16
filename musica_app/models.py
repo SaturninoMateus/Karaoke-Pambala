@@ -10,7 +10,7 @@ class Musica(models.Model):
     descricao = models.CharField(u'descrição', max_length=50)
     votacao = models.IntegerField(u'votos')
     letra = models.TextField(u'letra')
-    audio = models.FileField(u'audio', upload_to=u'musicas')
+    audio = models.FileField(u'audio', upload_to='musicas')
 
     # Neste caso, uma musica_app poderá ter vários artistas
     artista = models.ManyToManyField(Artista)
@@ -23,7 +23,7 @@ class Gravacao(models.Model):
     '''Essa classe representa a entidade Gravacao'''
     id = models.AutoField(primary_key=True)
     descricao = models.CharField(u'descrição', max_length=150)
-    audio = models.FileField(u'áudio de gravação', upload_to=u'audio_gravacoes')
+    audio = models.FileField(u'áudio de gravação', upload_to='audio_gravacoes')
     horario = models.DateTimeField(auto_now=True)
     musica = models.ForeignKey(Musica)
     usuario = models.ForeignKey(Usuario)
