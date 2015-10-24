@@ -33,8 +33,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#provide our get_profilel()
+#https://www.youtube.com/watch?v=JZD5Z4-5JZ8
+#AUTH_PROFILE_MODULE = 'pambaleiro.Pambaleiro'
 
-# Application definition
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -45,8 +47,15 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'user_profileapp',
     'musica_app',
+    'pambaleiro',
 )
 
+LOGIN_REDIRECT_URL = '/perfil/'
+LOGIN_URL = 'django.contrib.auth.views.login'
+'''
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/perfil/'
+'''
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

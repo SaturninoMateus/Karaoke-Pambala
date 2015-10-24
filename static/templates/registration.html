@@ -1,0 +1,86 @@
+{% extends "base1.html" %}
+{% block extrahead %}
+      <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+      <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script>
+            $(function() {
+                $( "#id_birth_date" ).datepicker();
+        });
+    </script>
+
+{% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'css/style3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+
+
+
+    <script src="{% static 'js/index.js' %}"></script>
+    <body>
+
+	<div class="container">
+		<h1>Cadastro</h1><br><br>
+        {% comment %}<div class="form-group" >{% endcomment %}
+        <div class="register_div" >
+            <form method="post" action="">
+                {% csrf_token %}
+                {% if form.errors %}<p>Por favor corrija os seguintes campo:</p>{% endif %}
+
+
+
+                {% if form.first_name.errors %}}<p class="error">{{ form.first_name.errors }}</p>{% endif %}
+                <p><label for="first_name"{% if form.first_name.errors %} class="error"{% endif %}>Nome:</label></p>
+                <p>{{ form.first_name }}</p>
+
+                {% if form.last_name.errors %}}<p class="error">{{ form.last_name.errors }}</p>{% endif %}
+                <p><label for="last_name"{% if form.last_name.errors %} class="error"{% endif %}>Sobrenome:</label></p>
+                <p>{{ form.last_name }}</p>
+
+
+                {% if form.username.errors %}}<p class="error">{{ form.username.errors }}</p>{% endif %}
+                <p><label for="username"{% if form.username.errors %} class="error"{% endif %}>Username:</label></p>
+                <p>{{ form.username }}</p>
+
+                {% if form.email.errors %}}<p class="error">{{ form.email.errors }}</p>{% endif %}
+                <p><label for="email"{% if form.email.errors %} class="error"{% endif %}>Email:</label></p>
+                <p>{{ form.email }}</p>
+
+                {% if form.password.errors %}}<p class="error">{{ form.passsword.errors }}</p>{% endif %}
+                <p><label for="password"{% if form.password.errors %} class="error"{% endif %}>Password:</label></p>
+                <p>{{ form.password }}</p>
+
+                {% if form.password1.errors %}}<p class="error">{{ form.passsword1.errors }}</p>{% endif %}
+                <p><label for="password1"{% if form.password1.errors %} class="error"{% endif %}>Password (de novo):</label></p>
+                <p>{{ form.password1 }}</p>
+
+                {% if form.birth_date.errors %}}<p class="error">{{ form.birth_date.errors }}</p>{% endif %}
+                <p><label for="birth_date"{% if form.birth_date.errors %} class="error"{% endif %}>Data de nascimento:</label></p>
+                <p>{{ form.birth_date }}</p>
+
+                {% if form.country.errors %}}<p class="error">{{ form.country.errors }}</p>{% endif %}
+                <p><label for="country"{% if form.country.errors %} class="error"{% endif %}>País:</label></p>
+                <p>{{ form.country }}</p>
+
+                {% if form.city.errors %}}<p class="error">{{ form.city.errors }}</p>{% endif %}
+                <p><label for="city"{% if form.city.errors %} class="error"{% endif %}>País:</label></p>
+                <p>{{ form.city }}</p>
+
+
+
+
+
+
+                <br><input type="submit" value="Cadastrar" />
+            </form>
+        </div>
+	</div>
+
+
+
+{% endblock content %}

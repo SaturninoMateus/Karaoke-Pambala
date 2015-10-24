@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, User
 from django.core.exceptions import ValidationError
 
 
@@ -16,7 +16,8 @@ ESCOLHA_DE_CIDADES = (
     ('PA', 'Pouso Alegre'),
 )
 ########################################################################################################
-class Usuario(AbstractBaseUser, models.Model):
+
+class Usuario(AbstractBaseUser):
     '''Essa classe representa a entidade Usuario'''
 
     #cada usuario terá um nickname e email únicos
@@ -26,6 +27,7 @@ class Usuario(AbstractBaseUser, models.Model):
     email = models.EmailField(u'email', unique=True)
     #profile_photo = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     data_nascimento = models.DateField(u'data de nascimento',null=False)
+    is_active = models.BooleanField(default=True)
     pais = models.CharField(u'pais', max_length=2,
                             choices=ESCOLHA_DE_PAISES,
                             default='BR')
@@ -36,6 +38,7 @@ class Usuario(AbstractBaseUser, models.Model):
 
     #USERNAME_FIELD, também funciona como identificador único para o modelo usuario no django, este campo tem que ser "unique=True"
     USERNAME_FIELD = 'nome_usuario'
+    PASSWORD_FIELD = 'senha'
     REQUIRED_FIELDS = ['nome_usuario','email']
 
     def __unicode__(self):

@@ -1,0 +1,55 @@
+<!doctype html>
+{% load staticfiles %}
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="{% static 'css/reset.css'  %}"> <!-- CSS reset -->
+	<link rel="stylesheet" href="{% static 'css/style2.css'  %}"> <!-- Resource style -->
+	<script src="{% static 'js/modernizr.js' %}"></script> <!-- Modernizr -->
+    {% block extrahead %}{% endblock %}
+
+
+  	
+	<title>Pambala Karaoke</title>
+</head>
+<body>
+	<header>
+		<div class="cd-logo"><a href="/"><img src="{% static 'img/cd-logo.svg' %}" alt="Logo"></a></div>
+
+		<nav class="cd-main-nav-wrapper">
+			<ul class="cd-main-nav">
+				<li><a href="#0">Acerca</a></li>
+				<li><a href="/login/">Entrar</a></li>
+				<li><a href="/register/">Cadastro</a></li>
+				<li>
+					<a href="#0" class="cd-subnav-trigger"><span>Categorias</span></a>
+
+					<ul>
+						<li class="go-back"><a href="#0">Menu</a></li>
+						<li><a href="#0">Categoria 1</a></li>
+						<li><a href="#0">Categoria 2</a></li>
+						<li><a href="#0">Categoria 3</a></li>
+						<li><a href="#0">Categoria 4</a></li>
+						<li><a href="#0">Categoria 5</a></li>
+						<li><a href="#0" class="placeholder">Placeholder</a></li>
+					</ul>
+				</li>
+			</ul> <!-- .cd-main-nav -->
+		</nav> <!-- .cd-main-nav-wrapper -->
+		
+		<a href="#0" class="cd-nav-trigger">Menu<span></span></a>
+	</header>
+	
+	<main class="cd-main-content">
+		<!-- main content here -->
+        {% block content%}
+        {% endblock%}
+	</main>
+{% comment %}<script src="{% static 'js/jquery-2.1.1.js' %}"></script>{% endcomment %}
+<script src="{% static 'js/main.js' %}"></script> <!-- Resource jQuery -->
+</body>
+</html>

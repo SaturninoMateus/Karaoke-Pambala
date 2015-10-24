@@ -1,0 +1,37 @@
+{% extends "base1.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <body>
+
+    <div class="wrapper">
+	<div class="container">
+		<h1>Bem-Vindo</h1>
+        {{ msg }}
+		<form class="form" action="/login/" method="post">
+            {% csrf_token %}
+			<input type="text" placeholder="Username" name="usuario">
+			<input type="password" placeholder="Password" name="senha">
+			<button type="submit" id="login-button">Login</button>
+		</form>
+	</div>
+
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+
+{% endblock content %}

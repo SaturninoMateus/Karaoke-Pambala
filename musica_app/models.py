@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
 from user_profileapp.models import Artista, Usuario
+from django.contrib.auth.models import User
 
 class Musica(models.Model):
     '''Essa classe representa a entidade Musica'''
@@ -23,10 +24,10 @@ class Gravacao(models.Model):
     '''Essa classe representa a entidade Gravacao'''
     id = models.AutoField(primary_key=True)
     descricao = models.CharField(u'descrição', max_length=150)
-    audio = models.FileField(u'áudio de gravação', upload_to='audio_gravacoes')
+    audio = models.FileField(u'áudio de gravação', upload_to='audio_gravacoes+')
     horario = models.DateTimeField(auto_now=True)
     musica = models.ForeignKey(Musica)
-    usuario = models.ForeignKey(Usuario)
+    usuario = models.ForeignKey(User)
 
 
     def __unicode__(self):
@@ -41,8 +42,7 @@ class Comentario(models.Model):
     id = models.AutoField(primary_key=True)
     texto = models.TextField()
     horario = models.DateTimeField(auto_now=True)
-    gravacao = models.ForeignKey(Gravacao)
-    usuario = models.ForeignKey(Usuario)
+    usuario = models.ForeignKey(User)
 
 
     def __unicode__(self):
@@ -50,3 +50,5 @@ class Comentario(models.Model):
         return self.usuario.nome_usuario
 
 
+
+    gravacao = models.ForeignKey(Gravacao)
