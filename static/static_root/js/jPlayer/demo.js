@@ -7,8 +7,8 @@ $(document).ready(function(){
     {
       title:"Busted Chump",
       artist:"ADG3",
-      mp3:"http://flatfull.com/themes/assets/musics/adg3com_bustedchump.mp3",
-      poster: "images/m0.jpg"
+      mp3:"http://www.faroe.com/sites/default/files/adg3com_bustedchump.mp3",
+      poster: "/static/images/m0.jpg"
     },
     {
       title:"Chucked Knuckles",

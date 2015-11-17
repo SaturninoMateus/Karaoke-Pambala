@@ -11,7 +11,8 @@ class Musica(models.Model):
     descricao = models.CharField(u'descrição', max_length=50)
     votacao = models.IntegerField(u'votos')
     letra = models.TextField(u'letra')
-    audio = models.FileField(u'audio', upload_to='musicas')
+    audio_mp3 = models.FileField(u'audio', upload_to='musicas')
+    audio_cdg = models.FileField(u'cdg', upload_to='musicas')
 
     # Neste caso, uma musica_app poderá ter vários artistas
     artista = models.ManyToManyField(Artista)

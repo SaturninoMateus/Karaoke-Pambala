@@ -2,6 +2,8 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from user_profileapp.views import Index, Login, Logout, Perfil, UserRedirect
 from pambaleiro.views import PambaleiroRegistration
+from django.conf import settings
+from django.conf.urls.static import static
 
 '''
 urlpatterns = [
@@ -29,4 +31,4 @@ urlpatterns = [
     url(r'perfil/$', Perfil.as_view()),
     url(r'profile/$', UserRedirect.as_view()),
     url(r'register/$', PambaleiroRegistration.as_view()),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
