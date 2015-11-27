@@ -1,4 +1,5 @@
-$(document).ready(function(){
+/*$(document).ready(function(){*/
+$("#song2").click(function(){
 
   var myPlaylist = new jPlayerPlaylist({
     jPlayer: "#jplayer_N",
@@ -7,9 +8,14 @@ $(document).ready(function(){
     {
       title:"Busted Chump",
       artist:"ADG3",
+      mp3:"/media/musicas/nobody_knows_you_pro.mp3",
+      poster: "/static/images/m0.jpg"
+    },/*{
+      title:"Busted Chump",
+      artist:"ADG3",
       mp3:"http://www.faroe.com/sites/default/files/adg3com_bustedchump.mp3",
       poster: "/static/images/m0.jpg"
-    },
+    },*/
     {
       title:"Chucked Knuckles",
       artist:"3studios",
@@ -57,7 +63,33 @@ $(document).ready(function(){
     keyEnabled: true,
     audioFullScreen: false
   });
-  
+    //############################################T
+    //#@TheOneID
+/*    $(document).ready(function() {
+	  	var player = new CDGPlayer(document.getElementById('karaoke-display'));
+	  	player.load("/media/musicas/nobody_knows_you_pro.cdg");
+
+		document.getElementById('song').addEventListener("playing", function() {
+			player.play();
+
+		});
+
+
+	});*/
+    $(document).on($.jPlayer.event.play, myPlaylist.cssSelector.jPlayer,  function(){
+        //$('.musicbar').addClass('animate');
+        var player = new CDGPlayer(document.getElementById('karaoke-display'));
+
+        player.load("/media/musicas/nobody_knows_you_pro.cdg");
+		player.play();
+    });
+
+
+    //############################################
+
+
+
+
   $(document).on($.jPlayer.event.pause, myPlaylist.cssSelector.jPlayer,  function(){
     $('.musicbar').removeClass('animate');
     $('.jp-play-me').removeClass('active');
@@ -86,13 +118,14 @@ $(document).ready(function(){
     }
     
   });
-
+    myPlaylist.play();
 
 
   // video
 
   $("#jplayer_1").jPlayer({
-    ready: function () {
+    click: function () {
+/*    ready: function () {*/
       $(this).jPlayer("setMedia", {
         title: "Big Buck Bunny",
         m4v: "http://flatfull.com/themes/assets/video/big_buck_bunny_trailer.m4v",

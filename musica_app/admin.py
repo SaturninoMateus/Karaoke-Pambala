@@ -12,6 +12,6 @@ class ComentarioAdmin(admin.ModelAdmin):
     fields = ('usuario', 'gravacao', 'texto')
 
 
-admin.site.register(Musica,MusicaAdmin)
+admin.site.register(Musica)
 admin.site.register(Gravacao, GravacaoAdmin)
 admin.site.register(Comentario, ComentarioAdmin)

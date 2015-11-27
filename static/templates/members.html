@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Membros: Pambala|Karaoke</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/font-awesome.css" rel="stylesheet">
+  <link href="/static/css/mycss.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+  <!--BEGIN HEADER-->
+  <header>
+
+        <div class="container">
+      <img src="/static/img/logo.png" class="logo">
+            <span id="username">Bem-Vindo: {{ user.username }}</span>
+    <span id="logout"><a href="/logout/">(Sair)</a></span>
+
+  </div>
+
+  </div>
+</header>
+<!--END HEADER-->
+
+
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Início</a></li>
+        <li><a href="/membros/">Membros</a></li>
+        <li><a href="#">Grupos</a></li>
+        <li><a href="/perfil/">Perfil</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+
+        <div class="members">
+        <h1 class="page-header">Membros</h1>
+        <!--BEGIN MEMBRO1-->
+            {% for membro in membros %}
+                <div class="row member-row">
+                  <div class="col-md-3">
+                    <img src="/static/img/user.png" class="img-thumbnail">
+                    <div class="text-center">{{ membro.username }}</div>
+                  </div>
+                  <div class="col-md-3">
+                    <p><a href="#" class="btn btn-default btn-block"><i class="fa fa-users"> Adicionar</i></a></p>
+                  </div>
+                  <div class="col-md-3">
+                      <p><a href="#" class="btn btn-success btn-block"><i class="fa fa-envelope"> Mensagem</i></a></p>
+                  </div>
+                  <div class="col-md-3">
+                      <p><a href="#" class="btn btn-primary btn-block"><i class="fa fa-edit"> Perfil</i></a></p>
+                  </div>
+                </div>
+            {% endfor %}
+        <!--END MEMBRO1-->
+
+
+
+
+
+        </div>
+      </div><!--col-md-8 end-->
+
+
+<div class="col-md-4">
+  <!--BEGIN SIDEBAR-->
+    <div class="panel panel-default musics">
+    <div class="panel-heading">
+      <h3 class="panel-title">Musicas</h3>
+    </div>
+    <div class="panel-body musics">
+
+
+      {% for musica in musicas %}
+          <div >
+            <h4><a href="/musica?id={{ musica.id }}">{{ musica.titulo }}</a></h4>
+          </div>
+       <div class="clearfix"></div>
+        {% endfor %}
+
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default groups">
+    <div class="panel-heading">
+      <h3 class="panel-title">Grupos Recentes</h3>
+    </div>
+    <div class="panel-body">
+      <div class="group-item">
+        <img = src="/static/img/group.png">
+        <h4><a href="#">Grupo 1</a></h4>
+        <p>Esse é um grupo de exemplo</p>
+      </div>
+      <div class="clearfix"></div>
+
+      <div class="group-item">
+        <img = src="/static/img/group.png">
+        <h4><a href="#">Grupo 2</a></h4>
+        <p>Esse é um grupo de exemplo</p>
+      </div>
+      <div class="clearfix"></div>
+
+      <div class="group-item">
+        <img = src="/static/img/group.png">
+        <h4><a href="#">Grupo 3</a></h4>
+        <p>Esse é um grupo de exemplo</p>
+      </div>
+      <div class="clearfix"></div>
+
+      
+        <a class="btn btn-primary" href="#">Ver todos grupos</a>
+      </div>
+  </div>
+  <!--END SIDEBAR-->
+
+</div><!--END col-md-4-->
+</div>
+</div>
+</section>
+
+<!--BEGIN FOOTER-->
+<footer>
+<div class="container">
+  <p>Pambala Copyright &copy; 2015, Todos Direitos Reservados</p>
+</div>
+</footer>
+<!--END FOOTER-->
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+  </body>
+  </html>

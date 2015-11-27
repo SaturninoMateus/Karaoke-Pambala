@@ -22,22 +22,9 @@
   <header>
     <div class="container">
       <img src="/static/img/logo.png" class="logo">
-      <form class="form-inline">
-        <div class="form-group">
-          <label class="sr-only" for="exampleInputEmail3">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-        </div>
-        <div class="form-group">
-          <label class="sr-only" for="exampleInputPassword3">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
-        </div>
-        <button type="submit" class="btn btn-default">Entrar</button>
-        <br><div class="checkbox">
-        <label>
-          <input type="checkbox"> Lembrar
-        </label>
-      </div>
-    </form>
+            <span id="username">Bem-Vindo: {{ user.username }}</span>
+    <span id="logout"><a href="/logout/">(Sair)</a></span>
+
   </div>
 </header>
 <!--END HEADER-->
@@ -56,11 +43,11 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="index.html">Início</a></li>
-        <li><a href="members.html">Membros</a></li>
-        <li><a href="groups.html">Grupos</a></li>
-        <li><a href="photos.html">Fotos</a></li>
-        <li><a href="profile.html">Perfil</a></li>
+        <li class="active"><a href="/feed/">Início</a></li>
+        <li><a href="/membros/">Membros</a></li>
+        <li><a href="#">Grupos</a></li>
+
+        <li><a href="/perfil/">Perfil</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -71,17 +58,19 @@
     <div class="row">
       <div class="col-md-8">
         <div class="profile">
-        <h1 class="page-header">Tolávio da Silva</h1>
+        <h1 class="page-header">Detalhes</h1>
         <div class="row">
           <div class="col-md-4">
             <img src="/static/img/user.png" class="img-thumbnail">
           </div>
           <div class="col-md-8">
             <ul>
-              <li><strong>Nome: </strong>Tolávio da Silva</li>
-              <li><strong>Email: </strong>tolavio@hotmail.com</li>
-              <li><strong>Cidade: </strong>Luanda</li>
+              <li><strong>Nome: </strong>{{ pambaleiro.user.first_name }} {{ pambaleiro.user.last_name }}</li>
+              <li><strong>Email: </strong>{{ pambaleiro.user.email }}</li>
+              <li><strong>Cidade: </strong>{{ pambaleiro.city}}</li>
               <li><strong>Estado: </strong>Luanda</li>
+              <li><strong>País: </strong>{{ pambaleiro.country }}</li>
+
               <li><strong>Sexo: </strong>Masculino</li>
               <li><strong>Profissão: </strong>Estudante</li>
             </ul>
@@ -122,31 +111,40 @@
 
 <div class="col-md-4">
   <!--BEGIN SIDEBAR-->
-  <div class="panel panel-default friends">
+    <div class="panel panel-default musics">
     <div class="panel-heading">
-      <h3 class="panel-title">Meus Amigos</h3>
+      <h3 class="panel-title">Musicas</h3>
     </div>
-    <div class="panel-body">
-      <ul>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="#profile"><img src="/static/img/user.png"></a></li>
-      </ul>
-      <div class="clearfix"></div>
-      <a class="btn btn-primary" href="#">Ver todos amigos</a>
+    <div class="panel-body musics">
+
+
+      {% for musica in musicas %}
+          <div >
+            <h4><a href="/musica?id={{ musica.id }}">{{ musica.titulo }}</a></h4>
+          </div>
+       <div class="clearfix"></div>
+        {% endfor %}
+
+
     </div>
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   <div class="panel panel-default groups">
@@ -175,7 +173,7 @@
       </div>
       <div class="clearfix"></div>
 
-      
+
         <a class="btn btn-primary" href="#">Ver todos grupos</a>
       </div>
   </div>

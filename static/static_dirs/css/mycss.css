@@ -93,6 +93,11 @@ header .logo {
 	float: left;
 }
 
+
+.musics h4 {
+	margin: 2px;
+}
+
 .friends img {
 	width: 55px;
 }
@@ -127,6 +132,19 @@ header .logo {
 .profile li {
 	list-style: none;
 	line-height: 1.9EM;
+}
+
+.tela-karaoke {
+	margin-top: -30px;
+	padding-top: 0px;
+}
+
+#username {
+	margin-left: 800px;
+	padding-left: 100px;
+	padding-bottom: 200px;
+
+
 }
 
 footer {
