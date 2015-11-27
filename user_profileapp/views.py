@@ -33,7 +33,8 @@ class Perfil(View):
     #@method_decorator(login_required)
     def get(self,request):
         print str(dir(request))
-        return render(request,'base2.html',{'usuario':'nome_de_teste'})
+        #return render(request,'base2.html',{'usuario':'nome_de_teste'})
+        return render(request,'profile.html',{'usuario':'nome_de_teste'})
 
 class Login(View):
     def get(self,request):
