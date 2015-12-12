@@ -55,6 +55,10 @@
       worker.postMessage({ command: 'getBuffer' })
     }
 
+      this.uploadWAV = function(){
+
+      }
+
     this.exportWAV = function(cb, type){
       currCallback = cb || config.callback;
       type = type || config.type || 'audio/wav';

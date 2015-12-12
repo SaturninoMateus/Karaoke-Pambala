@@ -18,12 +18,14 @@ navigator.getUserMedia = (
 );
 
 function record() {
+
   navigator.getUserMedia({audio: true}, function(localMediaStream){
     mediaStream = localMediaStream;
     var mediaStreamSource = context.createMediaStreamSource(localMediaStream);
     rec = new Recorder(mediaStreamSource, {
       workerPath: 'static/js/Recorderjs/recorderWorker.js'
     });
+
 
     rec.record();
   }, function(err){

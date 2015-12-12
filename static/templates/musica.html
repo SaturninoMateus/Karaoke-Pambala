@@ -21,7 +21,39 @@
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="/static/js/wcdg.js"></script>
     <script src="/static/js/recorder.js"></script>
+    <script src="/static/js/recorderWorker.js"></script>
     <script src="/static/js/app.js"></script>
+
+    <script>
+        $(document).ready(function() {
+	  	var player = new CDGPlayer(document.getElementById('karaoke-display'));
+	  	player.load('/media/{{ musica.audio_cdg|safe }}');
+
+		document.getElementById('song').addEventListener("playing", function() {
+
+			player.play();
+
+		});
+
+        document.getElementById('song').addEventListener("ended", function() {
+			stop({{ musica.id }}, '{{ csrf_token }}');
+		});
+             {% comment %}document.getElementById('song').addEventListener("ended", function() {
+			alert('acabou222');
+		});{% endcomment %}
+	});
+
+        function run() {
+
+            var musica = document.getElementById('song').play();
+            var player = new CDGPlayer(document.getElementById('karaoke-display'));
+            player.load('/media/{{ musica.audio_cdg|safe }}');
+            player.play();
+        }
+
+
+
+    </script>
 
 
 
@@ -33,8 +65,7 @@
   <header>
 
         <div class="container">
-      <img src="/static/img/logo.png" class="logo">
-            <span id="username">Bem-Vindo: {{ user.username }}</span>
+<a href="/" ><img src="/static/img/logo.png" class="logo"></a><span id="username">Bem-Vindo: {{ user.username }}</span>
     <span id="logout"><a href="/logout/">(Sair)</a></span>
 
   </div>
@@ -62,10 +93,11 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Início</a></li>
+        <li ><a href="/">Início</a></li>
         <li><a href="/membros/">Membros</a></li>
         <li><a href="#">Grupos</a></li>
         <li><a href="/perfil/">Perfil</a></li>
+          <li><a href="/perfil/">Minhas Gravações</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -78,7 +110,7 @@
       <div class="col-md-8">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">{{ musica.titulo }}</h3>
+            <h3 class="panel-title">{{ musica.titulo }} ({% for artista in musica.artista.all %}{{ artista.nome }} {{ artista.sobrenome }}, {% endfor %})</h3>
           </div>
                <div id="karaoke-player"></div>
 
@@ -87,7 +119,8 @@
                                 </canvas></center>
                                 <center>
                                 <audio id="song" controls="controls" >
-                                    <source src="/media/musicas/nobody_knows_you_pro.mp3" type="audio/mpeg" />
+                                    {% comment %}<source src="/media/musicas/nobody_knows_you_pro.mp3" type="audio/mpeg" />{% endcomment %}
+                                    <source src="/media/{{ musica.audio_mp3|safe }}" type="audio/mpeg" />
                                 </audio>
                                  </center>
 
@@ -98,8 +131,8 @@
 
         </div>
 
-    <button onclick="record()">Record</button>
-    <button onclick="stop()">Stop</button>
+    <button onclick="record();run();">Record</button>
+    <button onclick="stop({{ musica.id }}, '{{ csrf_token }}')">Stop</button>
     <button onclick="recordVideo()">Record Video</button>
     <button onclick="stopVideo()">Stop Video</button>
  
@@ -117,8 +150,9 @@
 
 
       {% for musica in musicas %}
+
           <div >
-            <h4><a href="/musica?id={{ musica.id }}">{{ musica.titulo }}</a></h4>
+            <h4><a href="/musica?id={{ musica.id }}">{{ musica.titulo }} ({% for artista in musica.artista.all %}{{ artista.nome }} {{ artista.sobrenome }}, {% endfor %})</a></h4>
           </div>
        <div class="clearfix"></div>
         {% endfor %}

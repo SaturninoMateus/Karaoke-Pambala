@@ -1,204 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Perfil: Pambala|Karaoke</title>
+    <title>Perfil: Pambala|Karaoke</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="/static/css/font-awesome.css" rel="stylesheet">
-  <link href="/static/css/mycss.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/css/font-awesome.css" rel="stylesheet">
+    <link href="/static/css/mycss.css" rel="stylesheet">
 
 
 </head>
 
 <body>
-  <!--BEGIN HEADER-->
-  <header>
+<!--BEGIN HEADER-->
+<header>
     <div class="container">
-      <img src="/static/img/logo.png" class="logo">
-            <span id="username">Bem-Vindo: {{ user.username }}</span>
-    <span id="logout"><a href="/logout/">(Sair)</a></span>
+        <a href="/" ><img src="/static/img/logo.png" class="logo"></a><span id="username">Bem-Vindo: {{ user.username }}</span>
+        <span id="logout"><a href="/logout/">(Sair)</a></span>
 
-  </div>
+    </div>
 </header>
 <!--END HEADER-->
 
 
 <nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/feed/">Início</a></li>
+                <li><a href="/membros/">Membros</a></li>
+                <li><a href="#">Grupos</a></li>
+
+                <li class="active"><a href="/perfil/">Perfil</a></li>
+                <li><a href="/minhasgravacoes/">Minhas Gravações</a></li>      </ul>
+        </div><!--/.nav-collapse -->
     </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/feed/">Início</a></li>
-        <li><a href="/membros/">Membros</a></li>
-        <li><a href="#">Grupos</a></li>
-
-        <li><a href="/perfil/">Perfil</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
 </nav>
 
 <section>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="profile">
-        <h1 class="page-header">Detalhes</h1>
+    <div class="container">
         <div class="row">
-          <div class="col-md-4">
-            <img src="/static/img/user.png" class="img-thumbnail">
-          </div>
-          <div class="col-md-8">
-            <ul>
-              <li><strong>Nome: </strong>{{ pambaleiro.user.first_name }} {{ pambaleiro.user.last_name }}</li>
-              <li><strong>Email: </strong>{{ pambaleiro.user.email }}</li>
-              <li><strong>Cidade: </strong>{{ pambaleiro.city}}</li>
-              <li><strong>Estado: </strong>Luanda</li>
-              <li><strong>País: </strong>{{ pambaleiro.country }}</li>
+            <div class="col-md-8">
+                <div class="profile">
+                    <h1 class="page-header">Detalhes</h1>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="/static/img/user.png" class="img-thumbnail">
+                        </div>
+                        <div class="col-md-8">
+                            <ul>
+                                <li><strong>Nome: </strong>{{ pambaleiro.user.first_name }} {{ pambaleiro.user.last_name }}</li>
+                                <li><strong>Email: </strong>{{ pambaleiro.user.email }}</li>
+                                <li><strong>Cidade: </strong>{{ pambaleiro.city}}</li>
+                                <li><strong>Estado: </strong>Luanda</li>
+                                <li><strong>País: </strong>{{ pambaleiro.country }}</li>
 
-              <li><strong>Sexo: </strong>Masculino</li>
-              <li><strong>Profissão: </strong>Estudante</li>
-            </ul>
-          </div>
+                                <li><strong>Sexo: </strong>Masculino</li>
+                                <li><strong>Profissão: </strong>Estudante</li>
+                            </ul>
+                        </div>
 
-          </div>
-          <br><br>
-          <div class="row">
-            <div class="col-md-12">
-                        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Mural do Perfil</h3>
-          </div>
-          <div class="panel-body">
-            <form>
-              <div class="form-group">
-                <textarea class="form-control" placeholder="Escreva no mural"></textarea> 
-              </div>
-              <button type="submit" class="btn btn-default">Publicar</button>
-              <div class="pull-right">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i>Texto</button>
-                  <button type="button" class="btn btn-default"><i class="fa fa-file-image-o"></i>Imagem</button>
-                  <button type="button" class="btn btn-default"><i class="fa fa-file-video-o"></i>Video</button>
+                    </div>
+                    <br><br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Mural do Perfil</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <textarea class="form-control" placeholder="Escreva no mural"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Publicar</button>
+                                        <div class="pull-right">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i>Texto</button>
+                                                <button type="button" class="btn btn-default"><i class="fa fa-file-image-o"></i>Imagem</button>
+                                                <button type="button" class="btn btn-default"><i class="fa fa-file-video-o"></i>Video</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
-              </div>
-            </form>
-          </div>
+            </div><!--col-md-8 end-->
 
+
+            <div class="col-md-4">
+                <!--BEGIN SIDEBAR-->
+                <div class="panel panel-default musics">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Musicas</h3>
+                    </div>
+                    <div class="panel-body musics">
+
+
+                        {% for musica in musicas %}
+                            <div >
+                                <h4><a href="/musica?id={{ musica.id }}">{{ musica.titulo }} ({% for artista in musica.artista.all %}{{ artista.nome }} {{ artista.sobrenome }}, {% endfor %})</a></h4>
+                            </div>
+                            <div class="clearfix"></div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="panel panel-default groups">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Grupos Recentes</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="group-item">
+                            <img = src="/static/img/group.png">
+                            <h4><a href="#">Grupo 1</a></h4>
+                            <p>Esse é um grupo de exemplo</p>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="group-item">
+                            <img = src="/static/img/group.png">
+                            <h4><a href="#">Grupo 2</a></h4>
+                            <p>Esse é um grupo de exemplo</p>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="group-item">
+                            <img = src="/static/img/group.png">
+                            <h4><a href="#">Grupo 3</a></h4>
+                            <p>Esse é um grupo de exemplo</p>
+                        </div>
+                        <div class="clearfix"></div>
+
+
+                        <a class="btn btn-primary" href="#">Ver todos grupos</a>
+                    </div>
+                </div>
+                <!--END SIDEBAR-->
+
+            </div><!--END col-md-4-->
         </div>
-            </div>
-          </div>
-
-
-        </div>
-      </div><!--col-md-8 end-->
-
-
-<div class="col-md-4">
-  <!--BEGIN SIDEBAR-->
-    <div class="panel panel-default musics">
-    <div class="panel-heading">
-      <h3 class="panel-title">Musicas</h3>
     </div>
-    <div class="panel-body musics">
-
-
-      {% for musica in musicas %}
-          <div >
-            <h4><a href="/musica?id={{ musica.id }}">{{ musica.titulo }}</a></h4>
-          </div>
-       <div class="clearfix"></div>
-        {% endfor %}
-
-
-    </div>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div class="panel panel-default groups">
-    <div class="panel-heading">
-      <h3 class="panel-title">Grupos Recentes</h3>
-    </div>
-    <div class="panel-body">
-      <div class="group-item">
-        <img = src="/static/img/group.png">
-        <h4><a href="#">Grupo 1</a></h4>
-        <p>Esse é um grupo de exemplo</p>
-      </div>
-      <div class="clearfix"></div>
-
-      <div class="group-item">
-        <img = src="/static/img/group.png">
-        <h4><a href="#">Grupo 2</a></h4>
-        <p>Esse é um grupo de exemplo</p>
-      </div>
-      <div class="clearfix"></div>
-
-      <div class="group-item">
-        <img = src="/static/img/group.png">
-        <h4><a href="#">Grupo 3</a></h4>
-        <p>Esse é um grupo de exemplo</p>
-      </div>
-      <div class="clearfix"></div>
-
-
-        <a class="btn btn-primary" href="#">Ver todos grupos</a>
-      </div>
-  </div>
-  <!--END SIDEBAR-->
-
-</div><!--END col-md-4-->
-</div>
-</div>
 </section>
 
 <!--BEGIN FOOTER-->
 <footer>
-<div class="container">
-  <p>Pambala Copyright &copy; 2015, Todos Direitos Reservados</p>
-</div>
+    <div class="container">
+        <p>Pambala Copyright &copy; 2015, Todos Direitos Reservados</p>
+    </div>
 </footer>
 <!--END FOOTER-->
 
 
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-  </body>
-  </html>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>

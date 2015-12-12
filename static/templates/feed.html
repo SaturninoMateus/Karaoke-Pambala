@@ -1,53 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="/X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="/X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Pambala|Karaoke</title>
+    <title>Pambala|Karaoke</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="/static/css/font-awesome.css" rel="stylesheet">
-  <link href="/static/css/mycss.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/css/font-awesome.css" rel="stylesheet">
+    <link href="/static/css/mycss.css" rel="stylesheet">
 
 
 
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-  
+
     <script src="/static/js/wcdg.js"></script>
+    <script src="/static/js/meujs.js"></script>
 
-     <script>
-  $(document).ready(function() {
-      var player = new CDGPlayer(document.getElementById('karaoke-display'));
-      player.load("/media/musicas/nobody_knows_you_pro.cdg");
 
-    document.getElementById('song').addEventListener("playing", function() {
-      player.play();
 
-    });
-        document.getElementById('song').addEventListener("pause", function() {
-      alert('PAUSED');
 
-    });document.getElementById('song').addEventListener("waiting", function() {
-      alert('WAITING');
+    <script>
+        {% for gravacao in gravacoes %}
+            $(document).ready(function() {
+                var player = new CDGPlayer(document.getElementById('karaoke-display{{ gravacao.id }}'));
+                player.load("/media/musicas/nobody_knows_you_pro.cdg");
 
-    });
-  });
+                document.getElementById('song').addEventListener("playing", function() {
+                    player.play();
 
-  </script>
+                });
+                document.getElementById('song').addEventListener("pause", function() {
+                    // alert('PAUSED');
+
+                });document.getElementById('song').addEventListener("waiting", function() {
+                    // alert('WAITING');
+
+                });
+            });
+        {% endfor %}
+    </script>
 
 </head>
 
 <body>
-  <!--BEGIN HEADER-->
-  <header>
+<!--BEGIN HEADER-->
+<header>
     <div class="container">
-      <img src="/static/img/logo.png" class="logo">
-      <!--
+        <a href="/" ><img src="/static/img/logo.png" class="logo"></a>      <!--
       <form class="form-inline">
         <div class="form-group">
           <label class="sr-only" for="/exampleInputEmail3">Email address</label>
@@ -64,120 +68,112 @@
         </label>
       </div>
     </form>-->
-    <span id="username">Bem-Vindo: {{ user.username }}</span>
-    <span id="logout"><a href="/logout/">(Sair)</a></span>
-  </div>
+        <span id="username">Bem-Vindo: {{ user.username }}</span>
+        <span id="logout"><a href="/logout/">(Sair)</a></span>
+    </div>
 </header>
 <!--END HEADER-->
 
 
 <nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/feed/">Início</a></li>
+                <li><a href="/membros/">Membros</a></li>
+                <li><a href="/groups.html">Grupos</a></li>
+                <li><a href="/perfil/">Perfil</a></li>
+                <li><a href="/minhasgravacoes/">Minhas Gravações</a></li>            </ul>
+        </div><!--/.nav-collapse -->
     </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/feed/">Início</a></li>
-        <li><a href="/membros/">Membros</a></li>
-        <li><a href="/groups.html">Grupos</a></li>
-        <li><a href="/photos.html">Fotos</a></li>
-        <li><a href="/perfil/">Perfil</a></li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
 </nav>
 
 <section>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Mural</h3>
-          </div>
-        
-
-        </div>
-
-        <!--BEGIN POST-->
-
-                <div class="panel panel-default post">
-                  <div class="panel-body">
-                   <div class="row">
-                    <div class="col-sm-2">
-                     <a class="post-avatar thumbnail" href="#profile"><img src="/static/img/user.png"><div class="text-center">Usuario1</div></a>
-                     <div class="likes text-center">591 Likes</div>
-                   </div><!--col-sm-2 end-->
-                   <div class="col-sm-10">
-                    <div class="bubble1">
-                      <br><br><br><br><br><br><br><br><br>
-                                    <div id="karaoke-player"></div>
-
-                                        <center>
-                                        <canvas id="karaoke-display" width="600" height="/432">
-                                        </canvas></center>
-                                        <center>
-                                        <audio id="song" controls="controls" >
-                                            <source src="/media/musicas/nobody_knows_you_pro.mp3" type="audio/mpeg" />
-                                        </audio>
-                                         </center>
-
-
-
-                                    <div id="cdg-debug">
-                                    </div>
-                      <div class="pointer-border"></div>
-                    </div><!--bubble div end-->
-                    <p class="post-actions"><a href="#">Comentar - </a>
-                      <a href="/#">Curtir - </a>
-                      <a href="/#">Seguir - </a>
-                      <a href="/#">Compartilhar</a></p>
-                      <div class="comment-form">
-                        <form class="form-inline">
-                          <div class="form-group">
-                            <input type="text" class="form-control" id="exampleInputName2" placeholder="Escreva um comentário">
-                          </div>
-                          <button type="submit" class="btn btn-default">Add</button>
-                        </form>
-                      </div><!--comment form end-->
-                      <div class="clearfix"></div>
-
-
-                      <div class="comments">
-                        <div class="comment">
-                          <a class="comment-avatar pull-left" href="#"><img src="/static/img/user.png"></a>
-                          <div class="comment-text">
-                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat</p>
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-
-                        <div class="comment">
-                          <a class="comment-avatar pull-left" href="#"><img src="/static/img/user.png"></a>
-                          <div class="comment-text">
-                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat</p>
-                          </div>
-                        </div>
-                        <div class="clearfix"></div>
-
-
-                      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Gravações</h3>
                     </div>
-                  </div>
+
+
                 </div>
-              </div>
+
+                {% for gravacao in gravacoes %}
+                    <!--BEGIN POST-->
+                    <div class="panel panel-default post">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <a class="post-avatar thumbnail" href="#profile"><img src="/static/img/user.png"><div class="text-center">{{ gravacao.usuario }}</div></a>
+                                    <div class="likes text-center">{{ gravacao.like_set.all|length }} Likes</div>
+                                </div><!--col-sm-2 end-->
+                                <div class="col-sm-10">
+                                    <div class="bubble1">
+                                        <br><br><br><br><br><br><br><br><br>
+                                        <div id="karaoke-player"></div>
+
+                                        <center>
+                                            <canvas id="karaoke-display{{ gravacao.id }}" width="600" height="/432">
+                                            </canvas></center>
+                                        <center>
+                                            <audio id="song" controls="controls" >
+                                                <source src="/media/{{ gravacao.audio }}" type="audio/mpeg" />
+                                            </audio>
+                                        </center>
 
 
-      <!--END POST-->
 
-     
+                                        <div id="cdg-debug">
+                                        </div>
+                                        <div class="pointer-border"></div>
+                                    </div><!--bubble div end-->
+                                    <p class="post-actions"><a href="#">Comentar - </a>
+                                        <a href="#" onclick="curtir('{{ gravacao.usuario }}',{{ gravacao.id }}, '{{ csrf_token }}');">Curtir</a>
+
+                                    <div class="comment-form">
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="{{ gravacao.usuario }}input{{ gravacao.id }}" placeholder="Escreva um comentário">
+                                            </div>
+                                            <input type="button" class="btn btn-default" value="Add" id="{{ gravacao.usuario }}btn{{ gravacao.id }}" onclick="comentar('{{ gravacao.usuario }}',{{ gravacao.id }}, '{{ csrf_token }}');">
+                                        </form>
+                                    </div><!--comment form end-->
+                                    <div class="clearfix"></div>
+
+
+                                    <div class="comments">
+
+                                        {% for comentario in gravacao.comentario_set.all %}
+                                            <div class="comment">
+                                                <a class="comment-avatar pull-left" href="#"><img src="/static/img/user.png"></a>
+                                                <a href="#">{{ comentario.usuario }}</a>
+                                                <div class="comment-text">
+                                                    <p>{{ comentario.texto }}</p><br>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        {% endfor %}
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--END POST-->
+                {% endfor %}
 
 
 
@@ -188,112 +184,112 @@
 
 
 
-</div><!--col-md-8 end-->
+            </div><!--col-md-8 end-->
 
 
-<div class="col-md-4">
-  <!--BEGIN SIDEBAR-->
-  <div class="panel panel-default musics">
-    <div class="panel-heading">
-      <h3 class="panel-title">Musicas</h3>
+            <div class="col-md-4">
+                <!--BEGIN SIDEBAR-->
+                <div class="panel panel-default musics">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Musicas</h3>
+                    </div>
+                    <div class="panel-body musics">
+
+
+                        {% for musica in musicas %}
+                            <div >
+                                <h4><a href="/musica?id={{ musica.id }}">{{ musica.titulo }} ({% for artista in musica.artista.all %}{{ artista.nome }} {{ artista.sobrenome }}, {% endfor %})</a></h4>
+                            </div>
+                            <div class="clearfix"></div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+
+
+
+                <!--
+
+                  <div class="panel panel-default friends">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Meus Amigos</h3>
+                    </div>
+                    <div class="panel-body">
+                      <ul>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
+                      </ul>
+                      <div class="clearfix"></div>
+                      <a class="btn btn-primary" href="/#">Ver todos amigos</a>
+                    </div>
+                  </div> -->
+
+
+                <div class="panel panel-default groups">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Grupos Recentes</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="group-item">
+                            <img = src="/static/img/group.png">
+                            <h4><a href="/#">Grupo 1</a></h4>
+                            <p>Esse é um grupo de exemplo</p>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="group-item">
+                            <img = src="/static/img/group.png">
+                            <h4><a href="/#">Grupo 2</a></h4>
+                            <p>Esse é um grupo de exemplo</p>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="group-item">
+                            <img = src="/static/img/group.png">
+                            <h4><a href="/#">Grupo 3</a></h4>
+                            <p>Esse é um grupo de exemplo</p>
+                        </div>
+                        <div class="clearfix"></div>
+
+
+                        <a class="btn btn-primary" href="/#">Ver todos grupos</a>
+                    </div>
+                </div>
+                <!--END SIDEBAR-->
+
+            </div><!--END col-md-4-->
+        </div>
     </div>
-    <div class="panel-body musics">
-
-
-      {% for musica in musicas %}
-          <div >
-            <h4><a href="/musica?id={{ musica.id }}">{{ musica.titulo }}</a></h4>
-          </div>
-       <div class="clearfix"></div>
-        {% endfor %}
-
-
-    </div>
-  </div>
-
-
-
-<!--
-
-  <div class="panel panel-default friends">
-    <div class="panel-heading">
-      <h3 class="panel-title">Meus Amigos</h3>
-    </div>
-    <div class="panel-body">
-      <ul>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-        <li><a class="thumbnail" href="/#profile"><img src="/static/img/user.png"></a></li>
-      </ul>
-      <div class="clearfix"></div>
-      <a class="btn btn-primary" href="/#">Ver todos amigos</a>
-    </div>
-  </div> -->
-
-
-  <div class="panel panel-default groups">
-    <div class="panel-heading">
-      <h3 class="panel-title">Grupos Recentes</h3>
-    </div>
-    <div class="panel-body">
-      <div class="group-item">
-        <img = src="/static/img/group.png">
-        <h4><a href="/#">Grupo 1</a></h4>
-        <p>Esse é um grupo de exemplo</p>
-      </div>
-      <div class="clearfix"></div>
-
-      <div class="group-item">
-        <img = src="/static/img/group.png">
-        <h4><a href="/#">Grupo 2</a></h4>
-        <p>Esse é um grupo de exemplo</p>
-      </div>
-      <div class="clearfix"></div>
-
-      <div class="group-item">
-        <img = src="/static/img/group.png">
-        <h4><a href="/#">Grupo 3</a></h4>
-        <p>Esse é um grupo de exemplo</p>
-      </div>
-      <div class="clearfix"></div>
-
-      
-        <a class="btn btn-primary" href="/#">Ver todos grupos</a>
-      </div>
-  </div>
-  <!--END SIDEBAR-->
-
-</div><!--END col-md-4-->
-</div>
-</div>
 </section>
 
 <!--BEGIN FOOTER-->
 <footer>
-<div class="container">
-  <p>Pambala Copyright &copy; 2015, Todos Direitos Reservados</p>
-</div>
+    <div class="container">
+        <p>Pambala Copyright &copy; 2015, Todos Direitos Reservados</p>
+    </div>
 </footer>
 <!--END FOOTER-->
 
 
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-  </body>
-  </html>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>

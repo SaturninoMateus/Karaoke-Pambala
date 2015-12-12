@@ -51,7 +51,8 @@ INSTALLED_APPS = (
 )
 
 LOGIN_REDIRECT_URL = '/perfil/'
-LOGIN_URL = 'django.contrib.auth.views.login'
+#LOGIN_URL = 'django.contrib.auth.views.login'
+LOGIN_URL = '/login/'
 '''
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/perfil/'

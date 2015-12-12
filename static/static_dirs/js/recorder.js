@@ -1,6 +1,6 @@
 (function(window){
 
-  var WORKER_PATH = 'recorderWorker.js';
+  var WORKER_PATH = '/static/js/recorderWorker.js';
 
   var Recorder = function(source, cfg){
     var config = cfg || {};
@@ -82,6 +82,21 @@
     var click = document.createEvent("Event");
     click.initEvent("click", true, true);
     link.dispatchEvent(click);
+  }
+
+    Recorder.forceUpload = function(blob, filename){
+    var url = (window.URL || window.webkitURL).createObjectURL(blob);
+        window.open(url);
+
+        return url;
+        /*
+    var link = window.document.createElement('a');
+    link.href = url;
+    link.download = filename || 'output.wav';
+    var click = document.createEvent("Event");
+    click.initEvent("click", true, true);
+    link.dispatchEvent(click);
+    */
   }
 
   window.Recorder = Recorder;

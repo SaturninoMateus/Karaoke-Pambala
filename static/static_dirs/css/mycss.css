@@ -58,6 +58,9 @@ header .logo {
 	top:50%;
 }
 
+a:link {
+    text-decoration: none;
+}
 
 .post-actions {
 	margin:5px;

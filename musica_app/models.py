@@ -29,14 +29,23 @@ class Gravacao(models.Model):
     horario = models.DateTimeField(auto_now=True)
     musica = models.ForeignKey(Musica)
     usuario = models.ForeignKey(User)
+    compartilhada = models.BooleanField(default=False)
 
 
     def __unicode__(self):
         #se vc estudou python então sabe o que isso faz
-        return self.musica.titulo
+        return self.musica.titulo+'/'+self.descricao
 
     class Meta:
         verbose_name_plural = "gravações"
+
+class Like(models.Model):
+    id = models.AutoField(primary_key=True)
+    gravacao = models.ForeignKey(Gravacao)
+    usuario = models.ForeignKey(User)
+
+    def __unicode__(self):
+        return self.gravacao.descricao+'/'+self.usuario.username
 
 class Comentario(models.Model):
     '''Essa classe representa a entidade Musica'''
@@ -44,12 +53,11 @@ class Comentario(models.Model):
     texto = models.TextField()
     horario = models.DateTimeField(auto_now=True)
     usuario = models.ForeignKey(User)
-
+    gravacao = models.ForeignKey(Gravacao)
 
     def __unicode__(self):
         #se vc estudou python então sabe o que isso faz
-        return self.usuario.nome_usuario
+        return self.usuario.username
 
 
 
-    gravacao = models.ForeignKey(Gravacao)
